@@ -5,7 +5,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: restapitemplate
+      POSTGRES_DB: restapi_user_management_example
     ports:
       - "5432:5432"
     volumes:
@@ -20,7 +20,7 @@ services:
     build: .
     restart: unless-stopped
     environment:
-      DATABASE_URL: postgresql://postgres:postgres@db:5432/restapitemplate
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/restapi_user_management_example
       SECRET_KEY: ${SECRET_KEY:-change-me-to-a-random-64-char-hex-string}
       ACCESS_TOKEN_EXPIRE_MINUTES: 60
     ports:

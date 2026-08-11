@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from app.routers import auth, projects, tasks
 
 app = FastAPI(
-    title="RestApiTemplate",
+    title="RestAPI - User Management Example",
     description="A production-hygiene FastAPI template: JWT auth, CRUD, pagination, tests, "
     "Docker, CI.",
     version="1.0.0",

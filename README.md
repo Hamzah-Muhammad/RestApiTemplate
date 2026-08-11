@@ -1,6 +1,6 @@
-# RestApiTemplate
+# RestAPI - User Management Example
 
-[![CI](https://github.com/Hamzah-Muhammad/RestApiTemplate/actions/workflows/ci.yml/badge.svg)](https://github.com/Hamzah-Muhammad/RestApiTemplate/actions/workflows/ci.yml)
+[![CI](https://github.com/Hamzah-Muhammad/RestApi-User-Management-Example/actions/workflows/ci.yml/badge.svg)](https://github.com/Hamzah-Muhammad/RestApi-User-Management-Example/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.13](https://img.shields.io/badge/Python-3.13-3776AB.svg?logo=python&logoColor=white)](requirements.txt)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.116-009688.svg?logo=fastapi&logoColor=white)](requirements.txt)
