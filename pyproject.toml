@@ -1,0 +1,15 @@
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.flake8-bugbear]
+# FastAPI's dependency-injection pattern relies on calling Depends()/Query() in argument
+# defaults - that's the documented, idiomatic usage, not the mutable-default-arg bug B008
+# flags for ordinary functions.
+extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "app.deps.Pagination"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
