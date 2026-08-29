@@ -5,7 +5,9 @@
 [![Python 3.13](https://img.shields.io/badge/Python-3.13-3776AB.svg?logo=python&logoColor=white)](requirements.txt)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.116-009688.svg?logo=fastapi&logoColor=white)](requirements.txt)
 
-A small, complete example REST API — meant to be forked and repointed at whatever resource you actually need, not run as-is. It's built as a **task tracker** (users → projects → tasks) purely as a stand-in domain; the point is everything *around* the CRUD: JWT auth, ownership-scoped access control, migrations, pagination, tests, containerization, and CI, wired together the way a real service would ship them.
+A small, complete REST API that shows how a service *ships*, not how a domain is modelled. The resources — users → projects → tasks — are deliberately the most boring ones available, so that everything around them is the point: JWT auth with per-user data isolation, versioned routes, one error contract, true partial updates, bounded pagination, Alembic migrations, a 27-test suite, a hardened Docker image, and CI. Fork it and repoint it at whatever your real resource is.
+
+"User management" here means registration, login, and every user only ever seeing their own data — there is intentionally no admin panel or role system, because the goal is an API you can read end to end in ten minutes and walk through live.
 
 **Stack:** Python + FastAPI, SQLAlchemy ORM with Alembic migrations (SQLite for local dev, Postgres in Docker/production — one env var swaps between them), JWT bearer auth (`pyjwt` + `bcrypt`), pytest for tests, Docker + docker-compose for containerization, GitHub Actions for CI. No external services to connect to — everything runs locally out of the box.
 
