@@ -1,3 +1,4 @@
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.core.security import hash_password
@@ -6,11 +7,11 @@ from app.schemas.user import UserCreate
 
 
 def get_by_email(db: Session, email: str) -> User | None:
-    return db.query(User).filter(User.email == email).first()
+    return db.scalar(select(User).where(User.email == email))
 
 
 def get_by_id(db: Session, user_id: int) -> User | None:
-    return db.query(User).filter(User.id == user_id).first()
+    return db.get(User, user_id)
 
 
 def create(db: Session, user_in: UserCreate) -> User:

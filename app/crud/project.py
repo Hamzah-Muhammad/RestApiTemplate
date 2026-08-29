@@ -1,3 +1,4 @@
+from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from app.models.project import Project
@@ -13,16 +14,16 @@ def create(db: Session, owner_id: int, project_in: ProjectCreate) -> Project:
 
 
 def get(db: Session, project_id: int) -> Project | None:
-    return db.query(Project).filter(Project.id == project_id).first()
+    return db.get(Project, project_id)
 
 
 def list_for_owner(
     db: Session, owner_id: int, limit: int, offset: int
 ) -> tuple[list[Project], int]:
-    query = db.query(Project).filter(Project.owner_id == owner_id)
-    total = query.count()
-    items = query.order_by(Project.created_at.desc()).offset(offset).limit(limit).all()
-    return items, total
+    base = select(Project).where(Project.owner_id == owner_id)
+    total = db.scalar(select(func.count()).select_from(base.subquery())) or 0
+    items = db.scalars(base.order_by(Project.created_at.desc()).offset(offset).limit(limit)).all()
+    return list(items), total
 
 
 def update(db: Session, project: Project, project_in: ProjectUpdate) -> Project:
