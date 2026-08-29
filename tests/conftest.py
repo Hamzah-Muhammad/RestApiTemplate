@@ -44,11 +44,11 @@ def client() -> Generator[TestClient]:
 @pytest.fixture
 def auth_headers(client: TestClient) -> dict[str, str]:
     client.post(
-        "/auth/register",
+        "/v1/auth/register",
         json={"email": "user@example.com", "full_name": "Test User", "password": "password123"},
     )
     response = client.post(
-        "/auth/login", data={"username": "user@example.com", "password": "password123"}
+        "/v1/auth/login", data={"username": "user@example.com", "password": "password123"}
     )
     token = response.json()["access_token"]
     return {"Authorization": f"Bearer {token}"}
