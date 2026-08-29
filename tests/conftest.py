@@ -18,7 +18,7 @@ TestSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 @pytest.fixture(autouse=True)
-def _reset_db() -> Generator[None, None, None]:
+def _reset_db() -> Generator[None]:
     Base.metadata.create_all(bind=engine)
     yield
     Base.metadata.drop_all(bind=engine)
@@ -36,7 +36,7 @@ app.dependency_overrides[get_db] = _override_get_db
 
 
 @pytest.fixture
-def client() -> Generator[TestClient, None, None]:
+def client() -> Generator[TestClient]:
     with TestClient(app) as test_client:
         yield test_client
 
